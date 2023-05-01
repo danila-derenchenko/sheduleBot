@@ -1,25 +1,16 @@
 from aiogram import types
 
-from .consts import faculties, course
+from .consts import faculties
 
-# Главное меню через /start или /help
 menu = types.InlineKeyboardMarkup()
-menu.add(types.InlineKeyboardButton("Установить своё расписание", callback_data="set_schedule"))
+menu.add(types.InlineKeyboardButton("Установить своё расписание", callback_data="set_faculty"))
 
-# (переделать)
-# Разбиваем курсы по 2 кнопки в ряду
 faculties_btn = [[]]
-faculties_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
+faculties_kb = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 for e, key in enumerate(faculties):
-    e += 1
-    if e % 2 == 0:
-        faculties_btn.append([types.KeyboardButton(faculties[key])])
-    else:
-        faculties_btn[-1].append(types.KeyboardButton(faculties[key]))
-for r in faculties_btn:
-    faculties_kb.row(*r)
+    faculties_kb.add(types.KeyboardButton(faculties[key]))
 
 # Курсы 1 - 6
-course_kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-for i in course:
+course_kb = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+for i in range(1, 7):
     course_kb.add(types.KeyboardButton(i))
