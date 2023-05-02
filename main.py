@@ -9,8 +9,6 @@ import utills.keyboards as keyboards
 bot = Bot(token=TGtoken)
 dp = Dispatcher(bot)
 
-# Нужно всё сделать через callback
-
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
     await message.reply("Моя менюшка", reply_markup=keyboards.menu)

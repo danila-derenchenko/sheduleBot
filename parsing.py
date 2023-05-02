@@ -24,7 +24,7 @@ async def get_groups(faculty: str | int, course: str | int):
     except:
         pass
     for i in result:
-        print(i["Name"])
+        print(i)
 
 
 async def get_schedule(group_id: int | str) -> None:
@@ -50,7 +50,7 @@ async def get_schedule(group_id: int | str) -> None:
 
 
 loop = asyncio.get_event_loop()
-loop.run_until_complete(get_groups(113574, 1))
+loop.run_until_complete(get_schedule("29567"))
 input("Продолжить показ: ")
 loop.run_until_complete(get_schedule("30425"))
 loop.close()
