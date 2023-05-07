@@ -23,8 +23,7 @@ async def get_groups(faculty: str | int, course: str | int):
         result = loads(await (await session.get(f"https://samgtu.ru/students/getgrouplist?Course={course}&Faculty={faculty}", headers=headers)).text())
     except:
         pass
-    for i in result:
-        print(i)
+    return result
 
 
 async def get_schedule(group_id: int | str) -> None:

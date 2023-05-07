@@ -3,7 +3,7 @@ from aiogram import Bot, Dispatcher, executor, types
 from config import TGtoken
 from utills.consts import faculties
 import utills.keyboards as keyboards
-# from parsing import get_groups, get_schedule
+from parsing import get_groups
 
 
 bot = Bot(token=TGtoken)
@@ -31,6 +31,7 @@ async def add_course(message: types.Message):
 async def add_group(message: types.Message):
     if message.text:
         await message.answer("Курс выбран")
+
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
