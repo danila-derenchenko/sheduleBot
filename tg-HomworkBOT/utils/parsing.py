@@ -54,11 +54,28 @@ async def get_schedule(group_id: int | str) -> str:
                 print(result[f"{i}"]["at"][f"{j}"])
                 message += f"\n{jc}) " + str(result[f"{i}"]["at"][f"{j}"].get("Cells", [])[0]["CellName"]).replace("<br/>", "\n")
                 message += "\n( " + result[f"{i}"]["at"][f"{j}"].get("Cells", [])[0]["AuditoriumTimeName"].replace("<sup>", ":").replace("</sup>", "") + " )"
-                # print("-> ", result[f"{i}"]["at"][f"{j}"].get("Cells", [])[0]["CellName"], "===TIME===", result[f"{i}"]["at"][f"{j}"].get("Cells", [])[0]["AuditoriumTimeName"])
+                print("-> ", result[f"{i}"]["at"][f"{j}"].get("Cells", [])[0]["CellName"], "===TIME===", result[f"{i}"]["at"][f"{j}"].get("Cells", [])[0]["AuditoriumTimeName"])
+    return message
+
+'''
+async def get_day(group_id: int | str) -> str:
+    global session, headers
+    if session is None:
+        session = ClientSession()
+    result = []
+    week = (await(await session.get("https://samgtu.ru/students/schedule", headers=headers)).text()).split(" неделя (текущая)")[0].split(" ")[-1].split(">")[1]
+    try:
+        result = loads(await (await session.get(f"https://samgtu.ru/students/getschedule?GroupID={group_id}&WeekNumber={week}", headers=headers)).text())["wd"]
+    except:
+        pass
+    message = ""
+    message += f'\n\n<b>{result[f"{3}"]["Name"]}</b>'
     return message
     
-# loop = asyncio.get_event_loop()
-# loop.run_until_complete(get_groups("104717", "1"))
-# input("Продолжить показ: ")
-# loop.run_until_complete(get_schedule("30425"))
-# loop.close()
+loop = asyncio.get_event_loop()
+loop.run_until_complete(get_groups("104717", "1"))
+input("Продолжить показ: ")
+loop.run_until_complete(get_schedule("30425"))
+loop.close()
+
+'''
