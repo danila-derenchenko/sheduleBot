@@ -57,8 +57,8 @@ async def get_schedule(group_id: int | str) -> str:
                 print("-> ", result[f"{i}"]["at"][f"{j}"].get("Cells", [])[0]["CellName"], "===TIME===", result[f"{i}"]["at"][f"{j}"].get("Cells", [])[0]["AuditoriumTimeName"])
     return message
 
-'''
-async def get_day(group_id: int | str) -> str:
+
+async def get_day(group_id: int | str,day: int | str) -> str:
     global session, headers
     if session is None:
         session = ClientSession()
@@ -69,13 +69,25 @@ async def get_day(group_id: int | str) -> str:
     except:
         pass
     message = ""
-    message += f'\n\n<b>{result[f"{3}"]["Name"]}</b>'
+    message += f'\n\n<b>{result[f"{day}"]["Name"]}</b>'
+    jc = 0
+    for j in range(1, 9):
+        if result[f"{day}"]["at"][f"{j}"].get("Cells", []):
+            jc += 1
+            print(result[f"{day}"]["at"][f"{j}"])
+            message += f"\n{jc}) " + str(result[f"{day}"]["at"][f"{j}"].get("Cells", [])[0]["CellName"]).replace("<br/>",
+                                                                                                               "\n")
+            message += "\n( " + result[f"{day}"]["at"][f"{j}"].get("Cells", [])[0]["AuditoriumTimeName"].replace("<sup>",
+                                                                                                               ":").replace(
+                "</sup>", "") + " )"
+            print("-> ", result[f"{day}"]["at"][f"{j}"].get("Cells", [])[0]["CellName"], "===TIME===",
+                  result[f"{day}"]["at"][f"{j}"].get("Cells", [])[0]["AuditoriumTimeName"])
+
+    print(message)
     return message
-    
+
 loop = asyncio.get_event_loop()
 loop.run_until_complete(get_groups("104717", "1"))
 input("Продолжить показ: ")
-loop.run_until_complete(get_schedule("30425"))
+loop.run_until_complete(get_day("29567",4))
 loop.close()
-
-'''
