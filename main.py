@@ -105,7 +105,7 @@ async def echo(message: types.Message):
     if type(result) == str:
         await message.answer(result)
 
-
+'''
 async def send_push_homework(*args, **kwargs):
     while True:
         data = func.send_push_homework("get")
@@ -113,7 +113,10 @@ async def send_push_homework(*args, **kwargs):
             await bot.send_message(i.user_id, f"Предмет: {i.subject}\n\nОписание:{i.text}")
         func.send_push_homework("update", data)
         await sleep(5 * 60) # сон 5 * 60 = 300 секунд = 5 минут
+'''
+
 
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True, on_startup=send_push_homework)
+    #executor.start_polling(dp, skip_updates=False, on_startup=send_push_homework)
+    executor.start_polling(dp, skip_updates=False)
