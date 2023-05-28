@@ -85,9 +85,10 @@ async def get_day(group_id: int | str,day: int | str) -> str:
 
     print(message)
     return message
-
+'''
 loop = asyncio.get_event_loop()
 loop.run_until_complete(get_groups("104717", "1"))
 input("Продолжить показ: ")
 loop.run_until_complete(get_day("29567",4))
 loop.close()
+'''
