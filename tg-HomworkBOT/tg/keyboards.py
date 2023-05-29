@@ -13,7 +13,8 @@ action_note.add(types.InlineKeyboardButton("Добавить запись", call
 action_note.add(types.InlineKeyboardButton("Посмотреть записи", callback_data="check_notes"))
 action_note.add(types.InlineKeyboardButton("Выбрать факультет", callback_data="set_faculty"))
 action_note.add(types.InlineKeyboardButton("Выбрать курс", callback_data="set_course"))
-action_note.add(types.InlineKeyboardButton("Посмотреть расписание", callback_data="get_schedule_1"))
+action_note.add(types.InlineKeyboardButton("Посмотреть расписание на неделю", callback_data="get_schedule_1"))
+
 
 courses = types.InlineKeyboardMarkup()
 for i in range(1, 7): courses.add(types.InlineKeyboardButton(f"{i} курс", callback_data=f"set_course_{i}"))

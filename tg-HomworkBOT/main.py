@@ -48,7 +48,6 @@ async def get_schedule(callback: types.CallbackQuery):
         await callback.message.answer(text=str(i), parse_mode="html")
     await callback.answer()
 
-
 @dp.callback_query_handler(text=["set_course"] + [f"set_course_{i}" for i in range(1, 7)])
 async def set_course(callback: types.CallbackQuery):
     if callback.data == "set_course":
